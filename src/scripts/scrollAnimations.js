@@ -21,3 +21,5 @@ export function setupScrollAnimations() {
     });
   });
 }
+
+setupScrollAnimations();
