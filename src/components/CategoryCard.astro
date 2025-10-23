@@ -1,0 +1,18 @@
+---
+// src/components/CategoryCard.astro
+interface Props {
+  image: string;
+  title: string;
+}
+
+const { image, title } = Astro.props;
+---
+
+<div
+  class="bg-white text-center border border-gray-200 shadow-md rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer"
+>
+  <img src={image} alt={title} class="w-full h-24 object-contain" />
+  <div class="p-4">
+    <h3 class="text-lg font-semibold text-gray-800">{title}</h3>
+  </div>
+</div>

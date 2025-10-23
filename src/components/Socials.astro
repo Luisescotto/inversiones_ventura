@@ -1,0 +1,33 @@
+---
+import { Icon } from "astro-icon/components";
+const iconSize = 24;
+
+const socials = [
+  { name: "facebook", url: "https://www.facebook.com/IVenturas" },
+  {
+    name: "instagram",
+    url: "https://www.instagram.com/inversiones_venturasrl",
+  },
+  { name: "tiktok", url: "https://www.tiktok.com/@inversiones.ventu" },
+  { name: "threads", url: "#" },
+  { name: "x", url: "#" },
+];
+---
+
+<ul class="flex gap-3 justify-center items-center">
+  {
+    socials.map((item) => (
+      <li>
+        <a
+          href={item.url}
+          aria-label={item.name}
+          rel="noopener noreferrer"
+          target="_blank"
+          class="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-200"
+        >
+          <Icon name={item.name} size={iconSize} class="text-white" />
+        </a>
+      </li>
+    ))
+  }
+</ul>

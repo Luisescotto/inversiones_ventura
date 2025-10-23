@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ProductSection from "@/components/ProductSection.astro";
+import { smartphones, tablets, consoles, sound } from "@/data/products";
+---
+
+<Layout title="Productos | Inversiones Ventura S.R.L.">
+  <section class="bg-gray-50 py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 class="text-3xl font-bold text-center text-gray-900 mb-10">
+        Nuestros Productos
+      </h1>
+
+      <ProductSection index="1" title="Smartphones" products={smartphones} />
+      <ProductSection index="2" title="Tablets" products={tablets} />
+      <ProductSection index="3" title="Consolas" products={consoles} />
+      <ProductSection index="4" title="Audio y Sonido" products={sound} />
+    </div>
+  </section>
+</Layout>

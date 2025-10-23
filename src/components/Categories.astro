@@ -1,0 +1,30 @@
+---
+// src/components/CategoriesSection.astro
+import CategoryCard from "./CategoryCard.astro";
+
+const categories = [
+  { title: "Smartphones", image: "/smartphones.avif" },
+  { title: "Tablets", image: "/tablets.avif" },
+  { title: "Laptops", image: "/laptops.avif" },
+  { title: "Audio", image: "/headsets.avif" },
+  { title: "Smartwach", image: "/smartwatches.avif" },
+  { title: "Consolas", image: "/consoles.avif" },
+  { title: "Accesorios", image: "/accessories.avif" },
+];
+---
+
+<section class="py-8">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-2 text-gray-900">Categorías</h2>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center"
+      data-animate
+    >
+      {
+        categories.map((category) => (
+          <CategoryCard image={category.image} title={category.title} />
+        ))
+      }
+    </div>
+  </div>
+</section>

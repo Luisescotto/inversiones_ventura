@@ -1,0 +1,112 @@
+---
+import "@splidejs/splide/dist/css/splide.min.css";
+import ProductCard from "./ProductCard.astro";
+
+// Tipado de productos
+interface Product {
+  id: string;
+  title: string;
+  image: string;
+  description?: string;
+  price?: string;
+  features?: string[];
+}
+
+// Props del componente
+interface Props {
+  index: string;
+  title: string; // Ej: "Smartphones"
+  products: Product[]; // Array de productos a mostrar
+}
+
+const { index, title, products } = Astro.props;
+---
+
+<section class="w-full bg-gray-50 py-4" id={index}>
+  <div class="max-w-6xl mx-auto py-2 px-4">
+    <h2 class="font-bold text-xl pb-2">{title}</h2>
+    <div class="splide" id={`product-splide-${index}`} data-animate>
+      <div class="splide__track">
+        <ul class="splide__list">
+          {
+            products.map((p) => (
+              <li class="splide__slide py-4">
+                <ProductCard
+                  id={p.id}
+                  image={p.image}
+                  title={p.title}
+                  description={p.description}
+                  price={p.price}
+                  category={title}
+                >
+                  {p.features && (
+                    <ul
+                      slot="features"
+                      class="list-disc list-inside text-sm text-gray-700"
+                    >
+                      {p.features.map((f) => (
+                        <li>{f}</li>
+                      ))}
+                    </ul>
+                  )}
+                </ProductCard>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <style is:inline>
+    .splide__arrow--prev {
+      left: -0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .splide__arrow--next {
+      right: -0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .splide__arrow {
+      background-color: rgb(195, 195, 195);
+      color: white;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+      border: 2px solid black;
+    }
+
+    .splide__arrow:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</section>
+
+<script>
+  import Splide from "@splidejs/splide";
+  document.querySelectorAll(".splide").forEach((slider) => {
+    new Splide(slider, {
+      type: "loop",
+      perPage: 4,
+      perMove: 1,
+      gap: "1rem",
+      pagination: false,
+      arrows: true,
+      breakpoints: {
+        1024: { perPage: 3 },
+        768: { perPage: 2 },
+        480: { perPage: 1 },
+      },
+    }).mount();
+  });
+</script>

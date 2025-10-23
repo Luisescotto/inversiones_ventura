@@ -1,0 +1,44 @@
+---
+// Hero.astro
+---
+
+<section class="relative w-full h-[90vh] overflow-hidden bg-black -z-10">
+  <video
+    id="hero-video"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+    src="/hero.webm"
+    class="w-full h-full object-cover opacity-60"></video>
+
+  <!-- Gradiente de desvanecimiento inferior -->
+  <div class="absolute bottom-0 left-0 w-full h-40 pointer-events-none"></div>
+
+  <!-- Contenido encima -->
+  <div
+    class="absolute left-1/2 h-full w-full z-50 rounded-2xl inset-0 flex items-center justify-center text-white text-center bg-black/40 backdrop-blur-md"
+  >
+    <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg">
+      Movilidad Eléctrica con Estilo
+    </h1>
+  </div>
+</section>
+
+<!-- Script para controlar el bucle parcial -->
+<script is:inline>
+  const video = document.getElementById("hero-video");
+
+  video.addEventListener("loadedmetadata", () => {
+    // Comienza en el segundo 2
+    video.currentTime = 2;
+    video.play();
+  });
+
+  video.addEventListener("timeupdate", () => {
+    // Vuelve al segundo 2 al llegar al 9
+    if (video.currentTime >= 9) {
+      video.currentTime = 2;
+    }
+  });
+</script>

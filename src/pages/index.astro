@@ -1,11 +1,232 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BigCard from "../components/BigCard.astro";
+import Categories from "../components/Categories.astro";
+
+import { Icon } from "astro-icon/components";
+const iconSize = 25;
+
+import ProductSection from "../components/ProductSection.astro";
+import Footer from "@/components/Footer.astro";
+import InstagramFeed from "@/components/InstagramFeed.astro";
+
+import { smartphones, tablets, consoles, sound } from "@/data/products";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Inversiones Ventura">
+  <section
+    class="grid grid-cols-1 md:grid-cols-2 justify-center items-center max-w-6xl mx-auto w-full px-4 py-6 gap-4"
+    data-animate
+  >
+    <BigCard image="/laptop.avif" title="Asus Zenbook">
+      <ul class="space-y-2 text-sm text-gray-700">
+        <li class="flex items-start gap-2">
+          <!-- icono: pantalla OLED -->
+          <Icon name="screen" />
+          <span>OLED Full HD de 14"</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <!-- icono: cpu -->
+          <Icon name="processor" />
+          <span>Intel Core i7 (13ª gen)</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <!-- icono: batería -->
+          <Icon name="battery" />
+          <span>Hasta 14 horas de batería</span>
+        </li>
+      </ul>
+    </BigCard>
+
+    <BigCard image="/tablet.avif" title="Tablet Samsung s9 FE">
+      <ul class="space-y-2 text-sm text-gray-700">
+        <li class="flex items-start gap-2">
+          <!-- icono: pantalla -->
+          <Icon name="screen" />
+          <span>10.9" LCD con 90 Hz</span>
+        </li>
+        <li class="flex items-center gap-2">
+          <!-- icono: lápiz -->
+          <Icon name="pen" />
+          <span class="text-xs font-medium"
+            >S Pen incluido para notas y dibujo</span
+          >
+        </li>
+        <li class="flex items-start gap-2">
+          <!-- icono: chip -->
+          <Icon name="processor" />
+          <span>Procesador Exynos 1380</span>
+        </li>
+      </ul>
+    </BigCard>
+  </section>
+
+  <section class="pb-4" data-animate>
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Card -->
+        <div
+          class="group bg-gradient-to-br from-sky-100 to-sky-300/70 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        >
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 text-sky-900 bg-white shadow-inner rounded-full p-3 group-hover:scale-110 transition-transform duration-300"
+            >
+              <Icon name="financing" size={30} />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 mb-1">
+                Financiamiento Disponible
+              </h3>
+              <p class="text-slate-700 text-base leading-relaxed">
+                Adquiere tu dispositivo con planes flexibles de pago adaptados a
+                tu presupuesto.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div
+          class="group bg-gradient-to-br from-sky-100 to-sky-300/70 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        >
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 text-sky-900 bg-white shadow-inner rounded-full p-3 group-hover:scale-110 transition-transform duration-300"
+            >
+              <Icon name="support" size={30} />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 mb-1">
+                Garantía y Soporte
+              </h3>
+              <p class="text-slate-700 text-base leading-relaxed">
+                Todos nuestros productos cuentan con garantía y respaldo técnico
+                para tu tranquilidad.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div
+          class="group bg-gradient-to-br from-sky-100 to-sky-300/70 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        >
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 text-sky-900 bg-white shadow-inner rounded-full p-3 group-hover:scale-110 transition-transform duration-300"
+            >
+              <Icon name="attention" size={30} />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 mb-1">
+                Atención Personalizada
+              </h3>
+              <p class="text-slate-700 text-base leading-relaxed">
+                Te asesoramos en cada compra para que elijas justo lo que
+                necesitas, con servicio cercano y confiable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Categories />
+
+  <ProductSection index="1" title="Smartphones" products={smartphones} />
+  <ProductSection index="2" title="Audio y Sonido" products={sound} />
+
+  <section class="py-8" data-animate>
+    <div class="px-4 max-w-6xl mx-auto">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid-rows-2 gap-4 sm:h-[650px]"
+      >
+        <!-- Card 1: Samsung Galaxy -->
+        <div class="relative overflow-hidden rounded-lg shadow-lg group">
+          <img
+            src="/samsunggalaxy.avif"
+            alt="Samsung Galaxy Family"
+            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-125"
+          />
+          <div
+            class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 text-white"
+          >
+            <h3 class="text-md font-bold">Samsung Galaxy Family</h3>
+            <p class="text-sm mt-1">
+              Descubre los últimos modelos de la familia Samsung Galaxy.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: Accesorios -->
+        <div class="relative overflow-hidden rounded-lg shadow-lg group">
+          <img
+            src="/allaccesories.avif"
+            alt="Smartphone Accessories"
+            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-125"
+          />
+          <div
+            class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 text-white"
+          >
+            <h3 class="text-md font-bold">Accesorios para tu dispositivo</h3>
+            <p class="text-sm mt-1">
+              Todo lo que necesitas para tu smartphone en un solo lugar.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3: Gamer -->
+        <div class="relative overflow-hidden rounded-lg shadow-lg group">
+          <img
+            src="/nintendoswitch2.avif"
+            alt="Nintendo Switch 2"
+            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-125"
+          />
+          <div
+            class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 text-white"
+          >
+            <h3 class="text-md font-bold">Para el gamer que llevas dentro</h3>
+            <p class="text-sm mt-1">
+              Tenemos el modelo más reciente de la familia Nintendo Switch.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4: Bicicleta eléctrica (destacada) -->
+        <div
+          class="relative overflow-hidden rounded-lg shadow-lg group md:col-span-3 bg-gradient-to-r from-blue-600 to-sky-300"
+        >
+          <picture>
+            <!-- Imagen para pantallas grandes -->
+            <source srcset="/products/momo.avif" media="(min-width: 1024px)" />
+
+            <!-- Imagen por defecto (para móviles y tablets) -->
+            <img
+              src="/products/momo-nano.avif"
+              alt="Bicicleta eléctrica MOMO B1"
+              class="w-full h-full object-cover lg:object-contain transform transition-transform duration-700 group-hover:scale-125"
+            />
+          </picture>
+
+          <div
+            class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 text-white"
+          >
+            <h3 class="text-lg font-bold">Bicicleta eléctrica MOMO B1</h3>
+            <p class="text-md mt-1">
+              Disfruta de la movilidad eléctrica con estilo y potencia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection index="3" title="Más Recientes" products={tablets} />
+
+  <InstagramFeed />
+
+  <Footer />
 </Layout>

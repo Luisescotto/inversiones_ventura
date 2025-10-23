@@ -1,0 +1,106 @@
+---
+const mockPosts = [
+  {
+    id: 1,
+    user: "Inversiones Ventura S.R.L.",
+    image: "/instagram/cliente1.avif",
+    caption: "Cliente feliz con su Bicicleta Electrica #BicicletaElectrica #MomoB1",
+    likes: 234,
+    comments: 12,
+  },
+  {
+    id: 2,
+    user: "Inversiones Ventura S.R.L.",
+    image: "/instagram/cliente2.avif",
+    caption: "Cliente feliz con su Iphone 15 Pro Max 💻 #ClienteFeliz #Iphone",
+    likes: 187,
+    comments: 8,
+  },
+  {
+    id: 3,
+    user: "Inversiones Ventura S.R.L.",
+    image: "/instagram/video.mp4",
+    caption: "Tu smartphone ideal te espera 📱 #Android #Gadgets",
+    likes: 321,
+    comments: 20,
+  },
+];
+
+function isVideo(file: string) {
+  return file.endsWith(".mp4") || file.endsWith(".webm") || file.endsWith(".ogg");
+}
+---
+
+<section class="bg-slate-900 text-white py-12">
+  <div class="max-w-6xl mx-auto px-4" >
+    <h2 class="text-3xl font-bold mb-8 text-center">Nuestro Instagram</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-animate>
+      {mockPosts.map((post) => (
+        <div
+          class="bg-slate-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300" 
+        >
+          <!-- Header -->
+          <div class="flex items-center gap-3 p-4">
+            <img
+              src="/logo.png"
+              alt={post.user}
+              class="w-10 h-10 rounded-full border border-slate-700"
+            />
+            <div>
+              <p class="font-semibold text-sm">{post.user}</p>
+              <p class="text-xs text-gray-400">República Dominicana</p>
+            </div>
+          </div>
+
+          <!-- Media (imagen o video) -->
+          {
+            isVideo(post.image) ? (
+              <div class="relative w-full h-96 bg-black">
+                <!-- Poster simulado -->
+                <img
+                  src="/instagram/thumbnail.avif"
+                  alt="Miniatura del video"
+                  class="absolute inset-0 w-full h-full object-cover z-0 blur-xs"
+                />
+                <video
+                  src={post.image}
+                  controls
+                  
+                  class="absolute inset-0 w-full h-full object-contain z-10"
+                ></video>
+              </div>
+            ) : (
+              <img
+                src={post.image}
+                alt="Publicación de Instagram"
+                class="w-full h-96 object-center object-cover"
+                loading="lazy"
+              />
+            )
+          }
+
+          <!-- Reacciones -->
+          <div class="flex items-center justify-between px-4 py-3">
+            <div class="flex gap-4 text-xl">
+              <button class="hover:scale-110 transition-transform">❤️</button>
+              <button class="hover:scale-110 transition-transform">💬</button>
+              <button class="hover:scale-110 transition-transform">🔗</button>
+            </div>
+          </div>
+
+          <!-- Texto -->
+          <div class="px-4 pb-4">
+            <p class="text-sm text-gray-300">
+              <span class="font-semibold text-white">{post.user}</span>{" "}
+              {post.caption}
+            </p>
+            <p class="text-xs text-gray-500 mt-2">
+              {post.likes} Me gusta • {post.comments} comentarios
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
