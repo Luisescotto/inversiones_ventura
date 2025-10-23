@@ -8,7 +8,6 @@ import { Icon } from "astro-icon/components";
 const iconSize = 25;
 
 import ProductSection from "../components/ProductSection.astro";
-import Footer from "@/components/Footer.astro";
 import InstagramFeed from "@/components/InstagramFeed.astro";
 
 import { smartphones, tablets, consoles, sound } from "@/data/products";
@@ -227,6 +226,4 @@ import { smartphones, tablets, consoles, sound } from "@/data/products";
   <ProductSection index="3" title="Más Recientes" products={tablets} />
 
   <InstagramFeed />
-
-  <Footer />
 </Layout>
